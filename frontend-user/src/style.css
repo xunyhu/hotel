@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dish-card {
+  width: 160px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px;
+  background: #fff;
+  text-align: center;
+}
+
+.dish-card h3 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}

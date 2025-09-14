@@ -1,0 +1,24 @@
+{
+    "default": true,
+    "MD003": {
+        "style": "atx"
+    },
+    "MD007": {
+        "indent": 4
+    },
+    "MD013": {
+        "line_length": 180,
+        "code_blocks": false
+    },
+    "MD033": {
+        "allowed_elements": [
+            "img",
+            "image",
+            "transition",
+            "table",
+            "tr",
+            "th"
+        ]
+    },
+    "MD045": false
+}
