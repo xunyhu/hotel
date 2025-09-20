@@ -1,0 +1,32 @@
+算法：微信支付统一下单接口
+
+输入：用户的 openid，支付金额 total_fee，商户订单号 out_trade_no，商品描述 body  
+输出：前端调用支付所需参数 paySignParams
+
+过程：
+1. 生成随机字符串 nonce_str  
+2. 构造请求参数 params，包括：
+   - appid（公众号/小程序ID）
+   - mch_id（商户号）
+   - nonce_str（随机字符串）
+   - body（商品描述）
+   - out_trade_no（商户订单号）
+   - total_fee（支付金额，单位为分）
+   - spbill_create_ip（客户端IP地址）
+   - notify_url（支付回调地址）
+   - trade_type（固定为 JSAPI）
+   - openid（用户标识）
+3. 使用商户密钥 apiKey 对 params 进行签名，得到 sign，并加入 params  
+4. 将 params 转换为 XML 格式 xmlData  
+5. 发送 HTTP POST 请求到微信统一下单接口（https://api.mch.weixin.qq.com/pay/unifiedorder），附带 xmlData  
+6. 接收返回结果并解析为 result  
+7. 如果 result.return_code 与 result.result_code 均为 SUCCESS：
+   7.1 提取预支付交易会话标识 prepay_id  
+   7.2 生成当前时间戳 timeStamp 和新的随机字符串 nonceStr  
+   7.3 构造 paySignParams，包括 appId、timeStamp、nonceStr、package=prepay_id、signType  
+   7.4 对 paySignParams 再次签名生成 paySign  
+   7.5 返回 paySignParams 给前端，用于调起微信支付  
+8. 否则，返回错误信息（如 return_msg 或 err_code_des）  
+9. 如果请求过程出现异常，返回“统一下单失败”信息  
+
+
